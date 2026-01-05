@@ -22,7 +22,6 @@ $produits = $collection->find([
 ]);
 
 foreach ($produits as $produit) {
-    // Trouver le tarif normal
     $tarifNormal = null;
     foreach ($produit['tarifs'] as $tarif) {
         if ($tarif['taille'] === 'normale') {
