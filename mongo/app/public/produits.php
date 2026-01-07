@@ -12,31 +12,23 @@ $produits = $collection->find(['categorie' => $categorie]);
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Produits - <?= htmlspecialchars($categorie) ?></title>
+    <title><?= htmlspecialchars($categorie) ?></title>
     <style>
-        body { font-family: Arial; margin: 20px; }
-        .produit { border: 1px solid #ddd; padding: 15px; margin: 10px 0; 
-                   border-radius: 5px; background: #f9f9f9; }
-        .tarif { display: inline-block; margin-right: 15px; padding: 5px 10px; 
-                 background: #fff; border: 1px solid #ccc; border-radius: 3px; }
+        body { font-family: Arial; padding: 20px; }
     </style>
 </head>
 <body>
-    <p><a href="catalogue.php">Retour aux catégories</a></p>
-    
-    <h1>Catégorie : <?= htmlspecialchars($categorie) ?></h1>
-    
+    <p><a href="catalogue.php">Retour</a></p>
+    <h1><?= htmlspecialchars($categorie) ?></h1>
     <?php foreach ($produits as $p): ?>
-        <div class="produit">
-            <h3>N°<?= $p['numero'] ?> - <?= $p['libelle'] ?></h3>
-            <p><?= $p['description'] ?></p>
-            <div>
-                <strong>Tarifs :</strong>
-                <?php foreach ($p['tarifs'] as $t): ?>
-                    <span class="tarif"><?= $t['taille'] ?> : <?= $t['tarif'] ?> €</span>
-                <?php endforeach; ?>
-            </div>
-        </div>
+        <hr>
+        <h3><?= $p['libelle'] ?> (#<?= $p['numero'] ?>)</h3>
+        <p><?= $p['description'] ?></p>
+        <p>
+            <?php foreach ($p['tarifs'] as $t): ?>
+                <b><?= ucfirst($t['taille']) ?>:</b> <?= $t['tarif'] ?> € &nbsp;
+            <?php endforeach; ?>
+        </p>
     <?php endforeach; ?>
 </body>
 </html>
